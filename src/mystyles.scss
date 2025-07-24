@@ -1,0 +1,11 @@
+$imageSize: 160px;
+$text-main-color: #26c9c1;
+body {
+  padding: 10px 50px;
+}
+img {
+    width: $imageSize;
+}
+.textcolor {
+    color: $text-main-color;
+}
