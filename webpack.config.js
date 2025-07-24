@@ -1,12 +1,13 @@
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 export default {
     entry: {
-        app: './src/index.js',
-        appStyles: './src/mystyles.scss'
+        app: './src/index.js'
     },
     output: {
         filename: '[name].[chunkhash].js',
+        clean: true,
     },
     module: {
         rules: [
@@ -22,11 +23,7 @@ export default {
             {
                 test: /\.scss$/,
                 exclude: /node_modules/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader'
-                ]
+                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
             },
             {
                 test: /\.css$/,
@@ -42,7 +39,11 @@ export default {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/index.html',
-            scriptLoading: 'blocking'
+            scriptLoading: 'blocking',
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name].[contenthash].css',
+            chunkFilename: "[id].css"
         })
     ],
     devServer: {
