@@ -24,3 +24,5 @@ setTimeout(() => {
     }
 }, 300);
 
+ console.log(`Api base: ${process.env.API_BASE}`);
+
